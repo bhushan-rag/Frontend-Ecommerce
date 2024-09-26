@@ -20,7 +20,8 @@ const LoginSignup = () => {
       headers: {
         Accept: "application/form-data",
         "Content-Type": "application/json",
-      },
+        },
+      credentials:"include",
       body: JSON.stringify(formData),
     })
       .then((resp) => resp.json())
@@ -43,7 +44,8 @@ const LoginSignup = () => {
       headers: {
         Accept: "application/form-data",
         "Content-Type": "application/json",
-      },
+        },
+      credentials:"include",
       body: JSON.stringify(formData),
     })
       .then((resp) => resp.json())

@@ -10,10 +10,14 @@ const Shop = () => {
   const [newcollection, setNewCollection] = useState([]);
 
   const fetchInfo = () => {
-    fetch("https://bhushan-ecommerce.vercel.app/popularinwomen")
+      fetch("https://bhushan-ecommerce.vercel.app/popularinwomen", {
+        credentials:"include"
+    })
       .then((res) => res.json())
       .then((data) => setPopular(data));
-    fetch("https://bhushan-ecommerce.vercel.app/newcollections")
+      fetch("https://bhushan-ecommerce.vercel.app/newcollections", {
+        credentials:"include"
+    })
       .then((res) => res.json())
       .then((data) => setNewCollection(data));
   };
