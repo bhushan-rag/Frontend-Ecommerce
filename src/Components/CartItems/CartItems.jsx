@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./CartItems.css";
 import cross_icon from "../Assets/cart_cross_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
-import { backend_url, currency } from "../../App";
+import {currency } from "../../App";
 
 const CartItems = () => {
   const {products} = useContext(ShopContext);

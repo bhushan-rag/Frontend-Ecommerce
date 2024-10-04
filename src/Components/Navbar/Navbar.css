@@ -14,7 +14,7 @@
     width: 45px;
 }
 .nav-logo p{
-    color: #171717;
+    color: #e0a000;
     font-size: 28px;
     font-weight: 600;
 }
@@ -23,7 +23,7 @@
     align-items: center;
     list-style: none;
     gap: 40px;
-    color: #626262;
+    color: #ff4141;
     font-size: 16px;
     font-weight: 500;
 }
@@ -41,24 +41,25 @@
     width: 80%;
     height: 3px;
     border-radius: 10px;
-    background: #FF4141;
+    background: #f6c40f;
 }
 .nav-login-cart{
     display: flex;
     align-items: center;
     gap: 30px;
+    color: #fff;
 }
 
 .nav-login-cart button{
     width: 120px;
     height: 40px;
     outline: none;
-    border: 1px solid #7a7a7a;
+    border: none;
     border-radius: 75px;
-    color: #515151;
+    color: #282828;
     font-size: 16px;
     font-weight: 500;
-    background: white;
+    background: #e0a000;
     cursor: pointer;
 }
 .nav-login-cart button:active{
