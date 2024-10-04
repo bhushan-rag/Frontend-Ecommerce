@@ -18,13 +18,16 @@ const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
   useEffect(() => {
-    fetch(`${backend_url}/allproducts`)
+      fetch(`${backend_url}/allproducts`, {
+        credentials:'include'
+    })
       .then((res) => res.json())
       .then((data) => setProducts(data))
 
     if (localStorage.getItem("auth-token")) {
       fetch(`${backend_url}/getcart`, {
-        method: 'POST',
+          method: 'POST',
+          credentials:'include',
         headers: {
           Accept: 'application/form-data',
           'auth-token': `${localStorage.getItem("auth-token")}`,
@@ -71,7 +74,8 @@ const ShopContextProvider = (props) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
       fetch(`${backend_url}/addtocart`, {
-        method: 'POST',
+          method: 'POST',
+          credentials:'include',
         headers: {
           Accept: 'application/form-data',
           'auth-token': `${localStorage.getItem("auth-token")}`,
@@ -86,7 +90,8 @@ const ShopContextProvider = (props) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (localStorage.getItem("auth-token")) {
       fetch(`${backend_url}/removefromcart`, {
-        method: 'POST',
+          method: 'POST',
+          credentials:'include',
         headers: {
           Accept: 'application/form-data',
           'auth-token': `${localStorage.getItem("auth-token")}`,
