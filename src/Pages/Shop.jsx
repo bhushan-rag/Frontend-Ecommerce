@@ -10,16 +10,16 @@ const Shop = () => {
   const [newcollection, setNewCollection] = useState([]);
 
   const fetchInfo = () => {
-      fetch("https://bhushan-ecommerce.vercel.app/popularinwomen", {
-        credentials:"include"
-    })
-      .then((res) => res.json())
-      .then((data) => setPopular(data));
-      fetch("https://bhushan-ecommerce.vercel.app/newcollections", {
-        credentials:"include"
-    })
-      .then((res) => res.json())
-      .then((data) => setNewCollection(data));
+      fetch("https://backend-ecommerce-c52x.onrender.com/popularinwomen", {
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => setPopular(data));
+      fetch("https://backend-ecommerce-c52x.onrender.com/newcollections", {
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => setNewCollection(data));
   };
 
   useEffect(() => {

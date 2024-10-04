@@ -15,13 +15,13 @@ const LoginSignup = () => {
 
   const login = async () => {
     let dataObj;
-    await fetch("https://bhushan-ecommerce.vercel.app/login", {
+    await fetch("https://backend-ecommerce-c52x.onrender.com/login", {
       method: "POST",
       headers: {
         Accept: "application/form-data",
         "Content-Type": "application/json",
-        },
-      credentials:"include",
+      },
+      credentials: "include",
       body: JSON.stringify(formData),
     })
       .then((resp) => resp.json())

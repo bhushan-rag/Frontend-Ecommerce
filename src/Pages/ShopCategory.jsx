@@ -8,11 +8,11 @@ const ShopCategory = (props) => {
   const [allproducts, setAllProducts] = useState([]);
 
   const fetchInfo = () => {
-      fetch("https://bhushan-ecommerce.vercel.app/allproducts", {
-        credentials:"include"
-    })
-      .then((res) => res.json())
-      .then((data) => setAllProducts(data));
+      fetch("https://backend-ecommerce-c52x.onrender.com/allproducts", {
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => setAllProducts(data));
   };
 
   useEffect(() => {
