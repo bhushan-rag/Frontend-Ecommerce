@@ -4,26 +4,21 @@ import Popular from "../Components/Popular/Popular";
 import Offers from "../Components/Offers/Offers";
 import NewCollections from "../Components/NewCollections/NewCollections";
 import NewsLetter from "../Components/NewsLetter/NewsLetter";
+import { backend_url } from "../config";
 
 const Shop = () => {
   const [popular, setPopular] = useState([]);
   const [newcollection, setNewCollection] = useState([]);
 
-  const fetchInfo = () => {
-      fetch("https://backend-ecommerce-c52x.onrender.com/popularinwomen", {
-        credentials: "include",
-      })
-        .then((res) => res.json())
-        .then((data) => setPopular(data));
-      fetch("https://backend-ecommerce-c52x.onrender.com/newcollections", {
-        credentials: "include",
-      })
-        .then((res) => res.json())
-        .then((data) => setNewCollection(data));
-  };
-
   useEffect(() => {
-    fetchInfo();
+    fetch(`${backend_url}/popularinwomen`)
+      .then((res) => res.json())
+      .then((data) => setPopular(Array.isArray(data) ? data : []))
+      .catch((error) => console.error("Failed to load popular products", error));
+    fetch(`${backend_url}/newcollections`)
+      .then((res) => res.json())
+      .then((data) => setNewCollection(Array.isArray(data) ? data : []))
+      .catch((error) => console.error("Failed to load new collections", error));
   }, []);
 
   return (

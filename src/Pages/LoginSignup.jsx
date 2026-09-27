@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./CSS/LoginSignup.css";
+import { backend_url } from "../config";
 
 const LoginSignup = () => {
   const [state, setState] = useState("Login");
@@ -13,22 +14,22 @@ const LoginSignup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const login = async () => {
+  const submit = async (endpoint) => {
     let dataObj;
-    await fetch("https://backend-ecommerce-c52x.onrender.com/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/form-data",
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(formData),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        dataObj = data;
+    try {
+      const resp = await fetch(`${backend_url}/${endpoint}`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-    console.log(dataObj);
+      dataObj = await resp.json();
+    } catch (error) {
+      alert("Unable to reach the server, please try again later");
+      return;
+    }
     if (dataObj.success) {
       localStorage.setItem("auth-token", dataObj.token);
       window.location.replace("/");
@@ -37,29 +38,8 @@ const LoginSignup = () => {
     }
   };
 
-  const signup = async () => {
-    let dataObj;
-    await fetch("https://backend-ecommerce-c52x.onrender.com/signup", {
-      method: "POST",
-      headers: {
-        Accept: "application/form-data",
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(formData),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        dataObj = data;
-      });
-
-    if (dataObj.success) {
-      localStorage.setItem("auth-token", dataObj.token);
-      window.location.replace("/");
-    } else {
-      alert(dataObj.errors);
-    }
-  };
+  const login = () => submit("login");
+  const signup = () => submit("signup");
 
   return (
     <div className="loginsignup">
