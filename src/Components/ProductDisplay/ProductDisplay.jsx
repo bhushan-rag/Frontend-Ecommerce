@@ -3,7 +3,7 @@ import "./ProductDisplay.css";
 import star_icon from "../Assets/star_icon.png";
 import star_dull_icon from "../Assets/star_dull_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
-import { currency } from "../../App";
+import { currency } from "../../config";
 
 const ProductDisplay = ({product}) => {
 
@@ -50,7 +50,7 @@ const ProductDisplay = ({product}) => {
           </div>
         </div>
         <button onClick={()=>addToCart(product.id)}>ADD TO CART</button>
-        <p className="productdisplay-right-category"><span>Category :</span> Women, T-shirt, Crop Top</p>
+        <p className="productdisplay-right-category"><span>Category :</span> {product.category}</p>
         <p className="productdisplay-right-category"><span>Tags :</span> Modern, Latest</p>
       </div>
     </div>

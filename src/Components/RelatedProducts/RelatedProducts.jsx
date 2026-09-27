@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './RelatedProducts.css'
 import Item from '../Item/Item'
-import { backend_url } from '../../App';
+import { backend_url } from '../../config';
 
 const RelatedProducts = ({category,id}) => {
 
@@ -16,19 +16,19 @@ const RelatedProducts = ({category,id}) => {
       },
       body: JSON.stringify({category:category}),
       })
-    .then((res)=>res.json()).then((data)=>setRelated(data))
-  },[])
+    .then((res)=>res.json())
+    .then((data)=>setRelated(Array.isArray(data) ? data : []))
+    .catch((error)=>console.error("Failed to load related products", error))
+  },[category])
 
   return (
     <div className='relatedproducts'>
       <h1>Related Products</h1>
       <hr />
       <div className="relatedproducts-item">
-        {related.map((item,index)=>{
-          if (id !== item.id) {
-            return <Item key={index} id={item.id} name={item.name} image={item.image}  new_price={item.new_price} old_price={item.old_price}/>
-          }
-        })}
+        {related.filter((item)=>item.id !== id).map((item)=>(
+          <Item key={item.id} id={item.id} name={item.name} image={item.image}  new_price={item.new_price} old_price={item.old_price}/>
+        ))}
       </div>
     </div>
   )
